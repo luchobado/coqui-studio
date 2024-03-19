@@ -1,0 +1,44 @@
+<body>
+    <header>
+      <nav class="navbar">
+        <div class="brand">
+          <a href="/"><img src="/img/logo nuevo2.png" alt="" /></a>
+        </div>
+        <ul id="nav-menu" class="nav-menu">
+          <li class="item"><a href="/">Home</a></li>
+          <li class="item"><a href="/">Menú</a></li>
+        </ul>
+        <form class="search-form" action="/product/search/?" method="get">
+          <input type="text" name="search" id="search" placeholder="Buscar..."></input>
+          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        <ul class="desktop-option">
+          <li class="shop" >
+            <a id="shop-icon" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <li class="sign">
+            <% if(locals.userLogged){ %>
+              <% if(locals.userLogged.idusertype == 1){ %>
+                <span class="login-name">
+                <%= locals.userLogged.name %>
+                </span>
+                <a id="avatar-option" class="login-avatar" href="#"><img src="/img/users/<%= locals.userLogged.image %>"></a>
+              <%- include('./adminMenu') %>
+              <%}%>
+              <%if(locals.userLogged.idusertype == 2){%>
+                <span class="login-name">
+                <%= locals.userLogged.name %>
+                </span>
+                <a id="avatar-option" class="login-avatar" href="#"><img src="/img/users/<%= locals.userLogged.image %>"></a>
+              <%- include('./userMenu') %>
+              <%}%>
+            <%} else { %>
+              <a href="/user/login"><i class="fa-regular fa-user"></i></a>              
+            <%}%>
+          </li>
+          <li class="hamburger-icon">
+            <a href="#"><i class="fa-solid fa-bars"></i></a>
+          </li>
+        </ul>
+      </nav>
+    </header>
